@@ -1,0 +1,58 @@
+version: '3'
+services:
+    postgres:
+        image: postgres:12.0-alpine
+        volumes: 
+            - ./data/postgres:/var/lib/postgresql/data
+        ports:
+            - '5432:5432'
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=admin
+
+    mysql:
+        image: mysql:5.7
+        volumes: 
+            - ./data/mysql:/var/lib/mysql
+        ports:
+            - '3306:3306'
+        environment:
+            - MYSQL_ROOT_PASSWORD=admin
+            - MYSQL_USER=admin
+            - MYSQL_PASSWORD=admin
+
+    mongo:
+        image: mongo:4.0
+        volumes:
+            - ./data/mongo:/data/db
+        ports:
+            - '27017:27017'
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=admin
+            - MONGO_INITDB_ROOT_PASSWORD=admin
+
+    redis:
+        image: redis:5.0-alpine
+        volumes:
+            - /data/redis:/data
+        ports:
+            - '6379:6379'
+
+    elastic:
+        image: elasticsearch:7.4.0
+        volumes:
+            - /data/elastic:/usr/share/elasticsearch/data
+        ports:
+            - '9200:9200'
+
+    adminer:
+        image: adminer:4.7.3
+        ports:
+            - 8080:8080
+
+    mailhog:
+        image: mailhog/mailhog:latest
+        ports:
+            - 1025:1025
+            - 8025:8025
+

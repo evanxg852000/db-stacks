@@ -1,0 +1,26 @@
+#!/bin/bash
+
+show_help() {
+  echo """
+  Commands
+  ---------------------------------------------------------
+  start         : start named or all services
+  stop          : stop services
+  """
+}
+
+case "$1" in
+
+  start )
+    docker-compose -f docker-compose.yml  up "${@:2}"
+  ;;
+
+  stop )
+    docker-compose -f docker-compose.yml  stop "${@:2}"
+  ;;
+
+  * )
+    show_help
+  ;;
+
+esac

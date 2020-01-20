@@ -3,6 +3,6 @@ data/mongo/*
 data/mysql/*
 data/postgres/*
 data/redis/*
-
+.DS_Store
 
 !**/.gitkeep
